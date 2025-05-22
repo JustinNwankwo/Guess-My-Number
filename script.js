@@ -9,7 +9,7 @@ const check = document.querySelector('.check');
 let secretNumber;
 
 const randomNumber = function () {
-  secretNumber = Math.round(Math.random() * 20);
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
 };
 
 randomNumber();
