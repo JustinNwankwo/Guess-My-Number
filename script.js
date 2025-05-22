@@ -2,20 +2,35 @@
 
 const number = document.querySelector('.number');
 const guess = document.querySelector('.guess');
+const message = document.querySelector(".message")
+const replay = document.querySelector(".again")
+
+let secretNumber;
 
 const randomNumber = function () {
-  number.value = Math.round(Math.random() * 20);
+  secretNumber = Math.round(Math.random() * 20);
 };
 
 randomNumber();
 
 guess.addEventListener('keypress', function (event) {
+  let numberGuessed = Number(guess.value)
   if (event.key === 'Enter') {
-    if (guess.value = number) {
-      return console.log(guess.value);
+    if (numberGuessed === secretNumber) {
+      message.textContent = "you guessed right"
+    }
+
+    else if (numberGuessed > secretNumber) {
+      message.textContent = "too high..."
+    }
+    else if (numberGuessed < secretNumber) {
+      message.textContent = "too low..."
     }
   }
 });
 
-console.log(number.value);
-console.log(guess.value);
+replay.addEventListener("click", function() {
+  randomNumber();
+  guess.value = ''
+  message.textContent = 'Start guessing...'
+})
